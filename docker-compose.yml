@@ -10,6 +10,8 @@ services:
     # 作成するコンテナ名の指定
     container_name: django
 
+    command: python manage.py runserver 0.0.0.0:8000
+
     # 使用するポートの設定
     ports:
       - "8000:8000"
