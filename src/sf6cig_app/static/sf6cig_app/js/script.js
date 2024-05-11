@@ -1,10 +1,16 @@
 
-import data from "../character.json" with { type: "json" }
+import data from "/static/sf6cig_app/character.json" with { type: "json" }
 const character_data = data
 
 const submit_butoon = document.getElementById("submit_button")
 const input_command = document.getElementById("input_command")
 const character_name = document.getElementById("character_select_box")
+const canvas = document.getElementById("canvas")
+const ctx = canvas.getContext("2d")
+const test_imgage = document.getElementById("test_image_file")
+var num = 1
+
+image_changed("/static/sf6cig_app/images/" + num + ".png")
 
 submit_butoon.addEventListener("click", click_button)
 
@@ -16,6 +22,25 @@ function click_button () {
     json["move_name_flag"] = document.getElementById("move_name_flag").checked
     json["command_flag"] = document.getElementById("command_flag").checked
     console.log(json)
+    num += 1
+    if (num > 9) {
+        num = 1
+    }
+    image_changed("/static/sf6cig_app/images/" + num + ".png")
+}
+
+function image_changed(image_path) {
+    let image = new Image()
+    image.src = image_path
+    console.log(image)
+    canvas.width = image.width
+    canvas.height = image.height
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+    image.onload = () => {
+        canvas.width = image.width
+        canvas.height = image.height
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+    }
 }
 
 function append_character_list () {
