@@ -1,5 +1,5 @@
 
-import data from "./character.json" with { type: "json" }
+import data from "../character.json" with { type: "json" }
 const character_data = data
 
 const submit_butoon = document.getElementById("submit_button")
